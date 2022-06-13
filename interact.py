@@ -1,39 +1,11 @@
-import datetime
 import random
-
-datetime
 import requests
-from paddlespeech.server.bin.paddlespeech_client import TTSOnlineClientExecutor
-import json
+import datetime
+from vad import VAD
+from asr import asr
+from tts import tts
 
-executor = TTSOnlineClientExecutor()
-
-
-# executor(
-#     input="您好，欢迎使用百度飞桨语音合成服务。",
-#     server_ip="127.0.0.1",
-#     port=8092,
-#     protocol="http",
-#     spk_id=0,
-#     speed=1.0,
-#     volume=1.0,
-#     sample_rate=0,
-#     output="./output.wav",
-#     play=True)
-
-def tts(txt):
-    executor(
-        input=txt,
-        server_ip="127.0.0.1",
-        port=8092,
-        protocol="http",
-        spk_id=0,
-        speed=1.0,
-        volume=1.0,
-        sample_rate=0,
-        output=None,  # "./output.wav",
-        play=True)
-
+vad = VAD()
 _UID = str(datetime.datetime.now())[:19]
 
 
@@ -42,8 +14,18 @@ def query(text):
 
 
 while True:
-    text = input("your input:\n\t")
-    if text == '/stop':
+    # text = input("your input:\n\t")
+    # if text == '/stop':
+    #     break
+    filename = str(datetime.datetime.now())[:19].replace('-', '_').replace(':', '_').replace(' ', 's')
+    audio_pth = vad(filename + '.wav')
+    if not audio_pth:
+        continue
+    text = asr(audio_pth)
+    if not text:
+        continue
+    print(f"user: {text}")
+    if text == '关机。':
         break
     res = query(text)
     for utter in res.json():

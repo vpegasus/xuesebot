@@ -15,7 +15,7 @@ class VAD(object):
         self.channels = 1
         self.sample_rate = 16000
         self.max_record_seconds = 10
-        self.max_silence_seconds = 3.0
+        self.max_silence_seconds = 2.0
         self.min_dur = 0.2,  # minimum duration of a valid audio event in seconds
         self.max_dur = 4,  # maximum duration of an event
         self.max_silence = 0.3,  # maximum duration of tolerated continuous silence within an event
@@ -38,7 +38,7 @@ class VAD(object):
             frames.append(data)
             audio_data = np.fromstring(data, dtype=np.short)
             max_audio_data = np.max(audio_data)
-            print(max_audio_data, end=' ')
+            # print(max_audio_data, end=' ')
             if (max_audio_data < 800):
                 isSilence = True
 
@@ -62,7 +62,7 @@ class VAD(object):
         wf.close()
         return frames
 
-    def vad(self, frames):
+    def vad(self, frames, file_pth):
         frames = b''.join(frames)
         data = auditok.load(frames, sr=self.sample_rate, sw=2, ch=self.channels, max_read=self.max_record_seconds)
         # split returns a generator of AudioRegion objects
@@ -73,4 +73,12 @@ class VAD(object):
             energy_threshold=55  # threshold of detection
         )
         gapless_region = sum(audio_regions)
-        gapless_region.save('tst2.wav')
+        if not gapless_region:
+            return None
+        gapless_region.save(file_pth)
+        return file_pth
+
+    def __call__(self, pth2save='./cache/vad_cache/tst.wav'):
+        frames = self.getMicroRecord(pth2save)
+        file_pth = self.vad(frames, pth2save.replace('.wav', '_vaded.wav'))
+        return file_pth

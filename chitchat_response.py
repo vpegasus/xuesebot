@@ -148,6 +148,7 @@ class CDial():
         self.history.append(out_ids)
         self.history = self.history[-(2 * self.args.max_history + 1):]
         out_text = self.tokenizer.decode(out_ids, skip_special_tokens=True)
+        print('-----\n',out_text.replace(' ', ''),'\n------')
         return out_text.replace(' ', '')
 
 

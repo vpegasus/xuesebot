@@ -34,6 +34,9 @@ class ActionPersonIntro(Action):
             obj = await utils.call_potential_coroutine(
                 kb.person(entity)
             )
+            if not obj:
+                dispatcher.utter_message(response="utter_ask_rephrase")
+                return []
             texts = [f'{inv_person_map.get(k)}:{v}' for k, v in obj.items() if inv_person_map.get(k)]
             texts = ','.join(texts)
             texts = entity + ' ' + texts
@@ -62,6 +65,9 @@ class ActionCityIntro(Action):
             obj = await utils.call_potential_coroutine(
                 kb.city(entity)
             )
+            if not obj:
+                dispatcher.utter_message(response="utter_ask_rephrase")
+                return []
             texts = [f'{inv_city_map.get(k)}:{v}' for k, v in obj.items() if inv_city_map.get(k)]
             texts = ','.join(texts)
             texts = entity + ' ' + texts
@@ -90,6 +96,9 @@ class ActionForceIntro(Action):
             obj = await utils.call_potential_coroutine(
                 kb.force(entity)
             )
+            if not obj:
+                dispatcher.utter_message(response="utter_ask_rephrase")
+                return []
             texts = [f'{inv_force_map.get(k)}:{v}' for k, v in obj.items() if inv_force_map.get(k)]
             texts = ','.join(texts)
             texts = entity + ' ' + texts
@@ -118,6 +127,9 @@ class ActionPersonAttr(Action):
             obj = await utils.call_potential_coroutine(
                 kb.person(entity)
             )
+            if not obj:
+                dispatcher.utter_message(response="utter_ask_rephrase")
+                return []
             texts = [f'{inv_force_map.get(k)}:{v}' for k, v in obj.items() if inv_force_map.get(k)]
             texts = ','.join(texts)
             texts = entity + ' ' + texts
@@ -146,6 +158,9 @@ class ActionCityAttr(Action):
             obj = await utils.call_potential_coroutine(
                 kb.person(entity)
             )
+            if not obj:
+                dispatcher.utter_message(response="utter_ask_rephrase")
+                return []
             texts = [f'{inv_force_map.get(k)}:{v}' for k, v in obj.items() if inv_force_map.get(k)]
             texts = ','.join(texts)
             texts = entity + ' ' + texts
@@ -174,6 +189,9 @@ class ActionForceAttr(Action):
             obj = await utils.call_potential_coroutine(
                 kb.person(entity)
             )
+            if not obj:
+                dispatcher.utter_message(response="utter_ask_rephrase")
+                return []
             texts = [f'{inv_force_map.get(k)}:{v}' for k, v in obj.items() if inv_force_map.get(k)]
             texts = ','.join(texts)
             texts = entity + ' ' + texts
@@ -197,8 +215,8 @@ class ActionUnrelated(Action):
             tracker: Tracker,
             domain: "DomainDict",
     ) -> List[Dict[Text, Any]]:
-        raw_text = tracker.latest_message
+        raw_text = tracker.latest_message['text']
         texts = unrelated_lm.response(raw_text)
-        dispatcher.utter_message(response=texts)
+        dispatcher.utter_message(texts)
         # dispatcher.utter_message(response="utter_ask_rephrase")
         return []
