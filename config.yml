@@ -1,0 +1,25 @@
+recipe: default.v1
+language: zh
+pipeline:
+  - name: JiebaTokenizer
+  - name: LanguageModelFeaturizer
+    model_name: bert
+    model_weights:  "/media/D/rasa_mass/bert-base-chinese"  # bert-base-chinese
+  - name: RegexFeaturizer
+  - name: DIETClassifier
+    epochs: 100
+    learning_rate: 0.001
+    tensorboard_log_directory: ./log
+  - name: ResponseSelector
+    epochs: 100
+    learning_rate: 0.001
+  - name: EntitySynonymMapper
+  - name: FallbackClassifier
+    threshold: 0.5
+policies:
+  - name: MemoizationPolicy
+    max_history: 3
+  - name: TEDPolicy
+    epochs: 100
+    max_history: 8
+  - name: RulePolicy

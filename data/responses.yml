@@ -1,0 +1,18 @@
+version: "3.1"
+responses:
+  utter_chitchat/greet:
+    - text: 你好，很高兴见到你
+    - text: 你好呀
+  utter_chitchat/goodbye:
+    - text: 再见
+  utter_chitchat/whoami:
+    - text: 我是小傻，正在学习变得不傻
+    - text: 我是小傻，刚刚出生不久
+  utter_chitchat/father:
+    - text: 我的爸爸是你呀，一个睿智帅气迷人的男人
+  utter_chitchat/whaticando:
+    - text: 我目前对血色衣冠里面的信息比较了解，您可以问我一些里面的武将、城池、势力等信息。
+  utter_default:
+  - text: 系统不明白您说的话，请换个说法。
+  utter_ask_rephrase:
+    - text: 请您再说一次。

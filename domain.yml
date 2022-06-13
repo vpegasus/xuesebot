@@ -1,0 +1,91 @@
+version: "3.1"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+  - chitchat:
+      is_retrieval_intent: true
+  - intro_person # 人物简介
+  - intro_city
+  - intro_force
+  - person_attr
+  - city_attr
+  - force_attr
+  - unrelated_topic
+#  - search_famliyname # 根据姓氏找属性
+#  - search_force # 介绍势力
+#  - search_city # 介绍城市
+#  - person_attribute # 查询人物属性
+#  - city_attribute # 查询城池属性
+#  - force_attribute # 查询势力属性
+#  - dc_city_familyname # 查询城市姓氏武将
+#  - dc_city_person_attribute # 查询城市武将属性
+#  - dc_force_familyname # 查询势力武将
+#  - dc_force_person_attribute # 查询武将属性
+#  - dc_force_city_attribute # 查询势力
+#  - compare_city
+#  - compare_person
+#  - compare_person
+#  - compare_force
+#  - shortest_path
+#  - affirm
+  - nlu_fallback
+
+entities:
+  - mention # 武将，势力、城池
+  - person # 武力、智力、枪兵、弩兵，特技
+  - person_attr
+  - city # 太守,势力,军团,最大士兵,士兵,金钱,兵粮,剑,枪,戟,弩,军马,冲车 等
+  - city_attr
+  - force # 君主,军师,爵位,国号,势力色,势力方针,势力目标
+  - force_attr
+#  - comp_value # 大，小， 多，少， 厉害，牛，怂，弱，强，能打，不抗揍，最近，最方便，相互，互相，同一个...
+#  - num_value #
+
+slots:
+  city:
+    type: any
+    mappings:
+      - type: from_entity
+        entity: city
+
+  force:
+    type: any
+    mappings:
+      - type: from_entity
+        entity: force
+
+  person:
+    type: any
+    mappings:
+      - type: from_entity
+        entity: person
+
+  city_attr:
+    type: any
+    mappings:
+      - type: from_entity
+        entity: city_attr
+  force_attr:
+    type: any
+    mappings:
+      - type: from_entity
+        entity: force_attr
+  person_attr:
+    type: any
+    mappings:
+      - type: from_entity
+        entity: person_attr
+
+
+actions:
+  - action_person_intro
+  - action_city_intro
+  - action_force_intro
+  - action_person_attr
+  - action_city_attr
+  - action_force_attr
+  - action_unrelated_topic
+  - utter_default
+  - utter_ask_rephrase

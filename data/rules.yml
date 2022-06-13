@@ -1,0 +1,11 @@
+version: "3.1"
+rules:
+  - rule: respond to chitchat
+    steps:
+      - intent: chitchat
+      - action: utter_chitchat
+
+  - rule: respond to unrelatedtopic
+    steps:
+      - intent: unrelated_topic
+      - action: action_unrelated_topic

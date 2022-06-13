@@ -1,0 +1,15 @@
+version: "3.1"
+stories:
+  - story: intro_person
+    steps:
+      - intent: intro_person
+      - action: action_person_intro
+  - story: intro_city
+    steps:
+      - intent: intro_city
+      - action: action_city_intro
+  - story: intro_force
+    steps:
+      - intent: intro_force
+      - action: action_force_intro
+

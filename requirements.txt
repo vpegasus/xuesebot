@@ -1,0 +1,16 @@
+auditok==0.2.0
+numpy==1.19.5
+paddle==1.0.2
+paddlepaddle==2.2.2
+paddlespeech==1.0.0a0
+pandas==1.4.2
+py2neo==2021.2.3
+PyAudio==0.2.11
+pymongo==3.10.1
+PyYAML==6.0
+rasa_sdk==3.1.2
+requests==2.27.1
+torch==1.11.0
+tqdm==4.63.0
+transformers==4.17.0
+yacs==0.1.8
