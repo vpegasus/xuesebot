@@ -28,7 +28,7 @@ class VAD(object):
                         rate=self.sample_rate,
                         input=True,
                         frames_per_buffer=self.chunk_size)
-        print("recording...")
+        print("机器人下在聆听...")
         frames = []
         isSilence = False
         isSilenceLast = False
