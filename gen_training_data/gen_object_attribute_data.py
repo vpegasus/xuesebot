@@ -2,7 +2,7 @@ import re
 import numpy as np
 import pandas as pd
 from dataclasses import dataclass, field
-from process_data.keymap import person_map, city_map, force_map, inv_force_map, inv_person_map, inv_city_map
+from process_raw_data.keymap import person_map, city_map, force_map, inv_force_map, inv_person_map, inv_city_map
 
 
 class MetaPattern(object):

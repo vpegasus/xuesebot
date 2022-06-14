@@ -9,8 +9,8 @@ from chitchat_response import CDial
 if typing.TYPE_CHECKING:  # pragma: no cover
     from rasa_sdk.types import DomainDict
 
-from process_data.keymap import *
-from process_data.neokb import SearchDB
+from process_raw_data.keymap import *
+from process_raw_data.neokb import SearchDB
 
 kb = SearchDB()
 unrelated_lm = CDial()  # unrelated_lm: unrelated language model response generator

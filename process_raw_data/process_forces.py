@@ -12,7 +12,7 @@ ct = pd.read_csv('./raw_data/城市.csv')
 fc = pd.read_csv('./raw_data/势力.csv')
 
 
-##todo 下面有些的 pp, cc 开头的开关有多组，因此有些末尾关系进行了编号，如‘pp_person_like2’，‘pp_person_like3’， 使用过程中，两个关系是一样的，
+##todo 下面有些的 pp, cc 开头的关系有多组，因此有些末尾关系进行了编号，如‘pp_person_like2’，‘pp_person_like3’， 使用过程中，两个关系是一样的，
 ## 为后续方便处理，其它 cc, pp 等关系都加了一个无意义的字符如空格，以便统一处理。
 
 

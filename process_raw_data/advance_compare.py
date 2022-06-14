@@ -1,4 +1,4 @@
-from process_data.search_neo import SearchDB
+from process_raw_data.search_neo import SearchDB
 
 
 class advanceCompare(SearchDB):
