@@ -4,7 +4,7 @@
 #                             SERVER SETTING                                    #
 #################################################################################
 host: 0.0.0.0
-port: 8091
+port: 8090
 
 # The task format in the engin_list is: <speech task>_<engine type>
 # task choices = ['asr_online']
@@ -21,19 +21,18 @@ engine_list: ['asr_online']
 ################################### ASR #########################################
 ################### speech task: asr; engine_type: online #######################
 asr_online:
-    model_type: 'conformer_online_multicn'
+    model_type: 'conformer_online_wenetspeech'
     am_model: # the pdmodel file of am static model [optional]
     am_params:  # the pdiparams file of am static model [optional]
     lang: 'zh'
     sample_rate: 16000
     cfg_path: 
     decode_method: 
-    num_decoding_left_chunks: -1
     force_yes: True
     device: 'cpu' # cpu or gpu:id
     decode_method: "attention_rescoring"
     continuous_decoding: True # enable continue decoding when endpoint detected
-
+    num_decoding_left_chunks: 16
     am_predictor_conf:
         device:  # set 'gpu:id' or 'cpu'
         switch_ir_optim: True
